@@ -1,4 +1,6 @@
 # Netflix Data Analysis
+## Live Demo:
+https://netflix-data-analysis01.streamlit.app/
 
 This project performs Exploratory Data Analysis (EDA) on the Netflix dataset to uncover trends in content distribution, release patterns, and genre popularity.
 The project also includes a Python web application (app.py) that allows users to explore the dataset interactively.
