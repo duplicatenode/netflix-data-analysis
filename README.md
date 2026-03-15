@@ -33,10 +33,15 @@ netflix-data-analysis
 
 ## Key Analysis Performed
 Data cleaning and preprocessing
+
 Handling missing values
+
 Distribution of Movies vs TV Shows
+
 Content release trends over the years
+
 Genre popularity analysis
+
 Country-wise content distribution
 
 ## Running the Project
