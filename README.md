@@ -1,9 +1,9 @@
-## Netflix Data Analysis
+# Netflix Data Analysis
 
 This project performs Exploratory Data Analysis (EDA) on the Netflix dataset to uncover trends in content distribution, release patterns, and genre popularity.
 The project also includes a Python web application (app.py) that allows users to explore the dataset interactively.
 
-# Project Overview
+## Project Overview
 
 This project analyzes Netflix’s content catalog to answer questions such as:
 How many Movies vs TV Shows are available?
@@ -12,7 +12,7 @@ What are the most common genres?
 Which countries produce the most Netflix content?
 The project combines data analysis and interactive visualization.
 
-# Tech Stack:
+## Tech Stack:
 Python
 Pandas
 NumPy
@@ -20,7 +20,7 @@ Jupyter Notebook
 Matplotlib / Seaborn
 Streamlit / Flask (via app.py)
 
-# Project Structure
+## Project Structure
 netflix-data-analysis
 │
 ├── app.py                  # Web application for interactive analysis
@@ -41,7 +41,7 @@ Genre popularity analysis
 
 Country-wise content distribution
 
-# Running the Project
+## Running the Project
 1️⃣ Clone the repository
 git clone https://github.com/duplicatenode/netflix-data-analysis.git
 2️⃣ Navigate to the project directory
@@ -56,12 +56,12 @@ streamlit run app.py
 If using Flask:
 python app.py
 
-# Example Insights
+## Example Insights
 Netflix contains significantly more movies than TV shows.
 The number of titles increased rapidly after 2015.
 Certain genres dominate the platform’s catalog.
 
-# Future Improvements
+## Future Improvements
 Add interactive dashboards
 Implement recommendation system
 Deploy the application online
