@@ -22,23 +22,21 @@ Streamlit / Flask (via app.py)
 
 ## Project Structure
 netflix-data-analysis
-│
+
 ├── app.py                  # Web application for interactive analysis
+
 ├── netflix_analysis.ipynb  # Exploratory data analysis notebook
+
 ├── netflix_titles.csv      # Dataset
-└── README.md               # Project documentation
-📊 Key Analysis Performed
 
+├── README.md               # Project documentation
+
+## Key Analysis Performed
 Data cleaning and preprocessing
-
 Handling missing values
-
 Distribution of Movies vs TV Shows
-
 Content release trends over the years
-
 Genre popularity analysis
-
 Country-wise content distribution
 
 ## Running the Project
