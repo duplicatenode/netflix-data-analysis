@@ -3,81 +3,76 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# Page title
-st.title("Netflix Data Analysis Dashboard")
+# Page config
+st.set_page_config(page_title="Netflix Data Analysis", layout="wide")
+
+st.title("📺 Netflix Data Analysis Dashboard")
 
 # Load dataset
 df = pd.read_csv("netflix_titles.csv")
 
-st.write("Dataset Preview")
-st.dataframe(df.head())
+# Sidebar filters
+st.sidebar.header("Filters")
 
-# Clean data
-df = df.dropna(subset=['country','rating'])
+type_filter = st.sidebar.multiselect(
+    "Select Type",
+    options=df["type"].unique(),
+    default=df["type"].unique()
+)
 
-# -----------------------------
-# Movies vs TV Shows
-# -----------------------------
+country_filter = st.sidebar.multiselect(
+    "Select Country",
+    options=df["country"].dropna().unique(),
+)
 
-st.subheader("Movies vs TV Shows")
+# Apply filters
+filtered_df = df[df["type"].isin(type_filter)]
+
+if country_filter:
+    filtered_df = filtered_df[filtered_df["country"].isin(country_filter)]
+
+# Dataset overview
+st.subheader("Dataset Overview")
+
+col1, col2, col3 = st.columns(3)
+
+col1.metric("Total Titles", len(filtered_df))
+col2.metric("Movies", len(filtered_df[filtered_df["type"] == "Movie"]))
+col3.metric("TV Shows", len(filtered_df[filtered_df["type"] == "TV Show"]))
+
+# Content Type Chart
+st.subheader("Content Type Distribution")
 
 fig1, ax1 = plt.subplots()
-sns.countplot(x='type', data=df, ax=ax1)
-ax1.set_title("Movies vs TV Shows on Netflix")
-
+sns.countplot(data=filtered_df, x="type", palette="Set2")
 st.pyplot(fig1)
 
-# -----------------------------
-# Top Countries
-# -----------------------------
+# Release Year Analysis
+st.subheader("Content Released Over Time")
 
-st.subheader("Top Countries Producing Netflix Content")
+release_counts = filtered_df["release_year"].value_counts().sort_index()
 
-top_countries = df['country'].value_counts().head(10)
-
-fig2, ax2 = plt.subplots()
-top_countries.plot(kind='bar', ax=ax2)
-
-ax2.set_title("Top Countries Producing Netflix Content")
-ax2.set_xlabel("Country")
+fig2, ax2 = plt.subplots(figsize=(10,4))
+release_counts.plot(ax=ax2)
+ax2.set_xlabel("Year")
 ax2.set_ylabel("Number of Titles")
-
 st.pyplot(fig2)
 
-# -----------------------------
-# Content Growth Over Years
-# -----------------------------
+# Top Countries
+st.subheader("Top Content Producing Countries")
 
-st.subheader("Content Growth Over Years")
-
-content_year = df['release_year'].value_counts().sort_index()
+top_countries = (
+    filtered_df["country"]
+    .dropna()
+    .value_counts()
+    .head(10)
+)
 
 fig3, ax3 = plt.subplots()
-content_year.plot(ax=ax3)
-
-ax3.set_title("Netflix Content Growth Over Years")
-ax3.set_xlabel("Year")
-ax3.set_ylabel("Number of Titles")
-
+top_countries.plot(kind="bar")
 st.pyplot(fig3)
 
-# -----------------------------
-# Top Genres
-# -----------------------------
+# Show dataset
+st.subheader("Raw Dataset")
 
-st.subheader("Top Genres on Netflix")
-
-genres = df['listed_in'].str.split(',', expand=True).stack()
-
-top_genres = genres.value_counts().head(10)
-
-fig4, ax4 = plt.subplots()
-top_genres.plot(kind='bar', ax=ax4)
-
-ax4.set_title("Top Genres on Netflix")
-ax4.set_xlabel("Genre")
-ax4.set_ylabel("Count")
-
-st.pyplot(fig4)
-
-st.success("Dashboard Created Successfully")
+st.dataframe(filtered_df)
