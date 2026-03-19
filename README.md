@@ -1,72 +1,55 @@
-# Netflix Data Analysis
-## Live Demo:
-https://netflix-data-analysis01.streamlit.app/
+# Netflix Data Analysis Dashboard
 
-This project performs Exploratory Data Analysis (EDA) on the Netflix dataset to uncover trends in content distribution, release patterns, and genre popularity.
-The project also includes a Python web application (app.py) that allows users to explore the dataset interactively.
+An interactive data analysis dashboard built with Python and Streamlit, analyzing 8,800+ Netflix titles.
 
-## Project Overview
+🔗 **Live Demo:** https://netflix-data-analysis01.streamlit.app/
 
-This project analyzes Netflix’s content catalog to answer questions such as:
-How many Movies vs TV Shows are available?
-Which years saw the most content releases?
-What are the most common genres?
-Which countries produce the most Netflix content?
-The project combines data analysis and interactive visualization.
+---
 
-## Tech Stack:
-Python
-Pandas
-NumPy
-Jupyter Notebook
-Matplotlib / Seaborn
-Streamlit / Flask (via app.py)
+## What It Does
 
-## Project Structure
-netflix-data-analysis
+- Loads and cleans a real-world Netflix dataset (handles missing values, fixes malformed rating entries)
+- Engineers new features: decade bins, audience rating buckets, parsed date fields, numeric movie duration, season counts
+- Renders 8 interactive charts across content type, country, genre, release decade, and duration
+- Sidebar filters let users drill down by content type, release year range, and audience rating
+- KPI cards show live metrics that update with every filter change
 
-├── app.py                  # Web application for interactive analysis
+## Features
 
-├── netflix_analysis.ipynb  # Exploratory data analysis notebook
+| Feature | Details |
+|---|---|
+| Content type breakdown | Pie chart: Movies vs TV Shows |
+| Rating buckets | Kids / Family / Teen / Adult — engineered from raw rating strings |
+| Content added over time | Line chart by year, split by type |
+| Monthly additions | Bar chart showing which months Netflix adds most content |
+| Top countries | Configurable top-N bar chart (5–20 countries) |
+| Top genres | Multi-label genre splitting and aggregation |
+| Decade breakdown | Grouped bar chart by decade of release |
+| Movie duration distribution | Histogram with mean/median annotations |
+| Filterable data table | View raw filtered records |
 
-├── netflix_titles.csv      # Dataset
+## Tech Stack
 
-├── README.md               # Project documentation
+- **Python** — data pipeline and backend logic
+- **Pandas** — data cleaning, feature engineering, aggregation
+- **NumPy** — numeric type handling
+- **Streamlit** — interactive dashboard and filter widgets
+- **Matplotlib / Seaborn** — all chart rendering
 
-## Key Analysis Performed
-Data cleaning and preprocessing
+## How to Run Locally
 
-Handling missing values
-
-Distribution of Movies vs TV Shows
-
-Content release trends over the years
-
-Genre popularity analysis
-
-Country-wise content distribution
-
-## Running the Project
-1️⃣ Clone the repository
-git clone https://github.com/duplicatenode/netflix-data-analysis.git
-2️⃣ Navigate to the project directory
-cd netflix-data-analysis
-3️⃣ Install dependencies
-pip install pandas numpy matplotlib seaborn streamlit
-4️⃣ Run the application
-
-If using Streamlit:
+```bash
+pip install -r requirements.txt
 streamlit run app.py
+```
 
-If using Flask:
-python app.py
+Make sure `netflix_titles.csv` is in the same directory as `app.py`.
 
-## Example Insights
-Netflix contains significantly more movies than TV shows.
-The number of titles increased rapidly after 2015.
-Certain genres dominate the platform’s catalog.
+---
 
-## Future Improvements
-Add interactive dashboards
-Implement recommendation system
-Deploy the application online
+## Resume Bullets (what you can honestly say)
+
+- Built and deployed an end-to-end interactive analytics dashboard processing 8,800+ Netflix titles with real-time sidebar filters for content type, release year, and audience rating.
+- Performed data cleaning and feature engineering: handled missing values, fixed malformed rating entries, parsed date strings, and created 5 new analytical columns including decade bins, audience rating buckets, and numeric duration fields.
+- Engineered a genre breakdown by splitting multi-label strings and aggregating individual genre counts across the full dataset.
+- Structured codebase with modular load_data(), clean_and_engineer(), and explode_genres() functions, separating data transformation from rendering logic.
